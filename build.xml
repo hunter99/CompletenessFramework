@@ -1,0 +1,63 @@
+<!-- MapleFetion Build File -->
+<project name="LogCompleteness" default="dist" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+    <property name="src.dir"   value="src"   />
+    <property name="demo.dir"   value="demo"   />
+	<property name="build.dir" value="target/classes" />
+    <property name="dist.dir"  value="dist"  />
+    <property name="lib.dir"   value="lib"   />
+    <property name="log.dir"   value="log"   />
+    <property name="doc.dir"   value="doc"   />
+
+    <path id="compile.classpath">
+        <pathelement location="${lib.dir}/dom4j-1.6.1.jar" />
+        <pathelement location="${lib.dir}/commons-cli-1.2.jar" />
+        <pathelement location="${lib.dir}/commons-configuration-1.9.jar" />
+		<pathelement location="${lib.dir}/commons-logging-1.1.2.jar"/>
+		<pathelement location="${lib.dir}/commons-collections-3.2.1.jar"/>
+		<pathelement location="${lib.dir}/commons-lang-2.6.jar"/>
+        <pathelement location="${lib.dir}/guava-14.0.1.jar" />
+        <pathelement location="${lib.dir}/javassist.jar" />
+        <pathelement location="${lib.dir}/reflections-0.9.9-RC1.jar" />
+    </path>
+
+    <!-- make directories for compilation -->
+    <target name="init">
+        <tstamp />
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${doc.dir}"/>
+    </target>
+
+
+   <!--  compile -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}"  classpathref="compile.classpath" encoding="UTF-8"/>
+        <!--javac srcdir="${demo.dir}" destdir="${build.dir}"  classpathref="compile.classpath" encoding="UTF-8"/>
+        <mkdir dir="${build.dir}/resources" />
+    	<copydir src="${src.dir}/resources" dest="${build.dir}/resources" /-->
+    </target>
+
+    <!-- create distribution files -->
+    <target name="dist" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar jarfile="${dist.dir}/${ant.project.name}-0.01-SNAPSHOT.jar" basedir="${build.dir}"/>
+    </target>
+
+    <!-- clean the directories -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete file="${log.dir}/*.*" />
+    </target>
+
+    <!-- generate api docs -->
+    <target name="doc">
+        <delete dir="${doc.dir}" />
+        <mkdir dir="${doc.dir}"/>
+         <javadoc destdir="${doc.dir}"  classpathref="compile.classpath" encoding="UTF-8" docencoding="UTF-8">
+            <packageset dir="${src.dir}">
+                <include name="**"/>
+            </packageset>
+        </javadoc>
+     </target>
+</project>
