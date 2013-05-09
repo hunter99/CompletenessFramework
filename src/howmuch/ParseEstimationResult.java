@@ -275,14 +275,6 @@ public class ParseEstimationResult {
 			line.append("\"Aggregated "+realNumOfLogs+" logs\"");
 		}else if(" number of traces considered".equals(title)){
 			line.append(row+1);
-//		}else if("Actual number of classes".equals(title)){
-//				line.append(realunits);
-//		}else if("Actual number of trace classes".equals(title)){
-//			line.append(realtraceclasses);
-//		}else if("Actual OUR".equals(title)){
-//			line.append(vals[row][0]/realunits);
-//		}else if("Actual OTR".equals(title)){
-//			line.append(vals[row][1]/realtraceclasses);
 		}else if(title.startsWith("MSE")){
 			line.append(-1);
 		}else {
