@@ -75,7 +75,7 @@ public class LogCompleteness extends PopEstimation {
 	 */
 	@SuppressWarnings("static-access")
 	public static EstimatorConfigure getConfig(String args[]){
-		String syntax="java howmuch.LogCompleteness [-h] [--confidence level] [--epsilon value] [--distribution file] <-config configfile> <mxml files>";
+		String syntax="java howmuch.LogCompleteness [-h] [--confidence level] [--epsilon value] [--tracedistribution file] [--unitdistribution file] [--realUnits number] [--realTraceClasses number] <--config configfile> <mxml files>";
 		EstimatorConfigure.setCmdLineSyntax(syntax);
 		//describe each ocommand line ptions.
 		Options options = new Options();
@@ -97,16 +97,30 @@ public class LogCompleteness extends PopEstimation {
                 .withDescription(  "the configuration file" )
                 .create( "c");
 			//occurrence probability distributions of traces of the underline process model.
-			Option tracedistribution=OptionBuilder.withLongOpt("distribution")
+			Option tracedistribution=OptionBuilder.withLongOpt("tracedistribution")
 				.withArgName( "file" )
                 .hasArg()
                 .withDescription(  "the occurrence distribution of traces" )
-                .create( "d");
+                .create( "T");
+			Option unitdistribution=OptionBuilder.withLongOpt("unitdistribution")
+					.withArgName( "file" )
+	                .hasArg()
+	                .withDescription(  "the occurrence distribution of units" )
+	                .create( "U");
+			Option realunits = OptionBuilder.withLongOpt("realUnits")
+					.withDescription("the number of real units").hasArg()
+					.withArgName("number").create("u");
+			Option realclasses = OptionBuilder.withLongOpt("realTraceClasses")
+					.withDescription("the number of real trace classes").hasArg()
+					.withArgName("number").create("t");
 			options.addOption(help);
 			options.addOption(confidence);
 			options.addOption(epsilon);
 			options.addOption(configfile);
 			options.addOption(tracedistribution);
+			options.addOption(unitdistribution);
+			options.addOption(realunits);
+			options.addOption(realclasses);
 		
 			CommandLineParser parser = new PosixParser();
 			CommandLine cmd = parser.parse( options, args);
@@ -144,9 +158,19 @@ public class LogCompleteness extends PopEstimation {
 					log.warn("epsilon with default value : "+ep);
 			}
 			ec.set("epsilon", ep);
+
+			if(cmd.hasOption("u")){
+				ec.set("realUnits", Integer.parseInt(cmd.getOptionValue("u")));
+			}
+			if(cmd.hasOption("t")){
+				ec.set("realTraceClasses", Integer.parseInt(cmd.getOptionValue("t")));
+			}
+			if(cmd.hasOption("U")){
+				ec.set("unitdistribution", cmd.getOptionValue("unitdistribution"));
+			}
 			
-			if(cmd.hasOption("d")){
-				ec.set("tracedistribution", cmd.getOptionValue("distribution"));
+			if(cmd.hasOption("T")){
+				ec.set("tracedistribution", cmd.getOptionValue("tracedistribution"));
 			}
 			
 			String[] params = cmd.getArgs();
