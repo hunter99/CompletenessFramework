@@ -8,6 +8,7 @@ import howmuch.probability.TraceDistribution;
 /**
  * The actual probability coverage of observed trace classes.
  * <P>Actually this is not an estimator, but a calculator.
+ * <P>The estimator can only be used in controlled experiments where the trace occurrence distribution is known.
  * @author hedong
  *
  */
@@ -27,9 +28,6 @@ public class ZActualTraceCoverage extends BaseEstimatorWithParameters{
 	}
 	public void estimate(StatRes res){
 		successful=false;
-		int w=res.getNumOfObservedUnits();
-		res.setW(this.realDist.getDistSize());
-		res.setU(res.getW()-w);
 		double sum=0.0;
 		for(String trace:res.getObservedUnits().keySet()){
 			try{
@@ -38,10 +36,11 @@ public class ZActualTraceCoverage extends BaseEstimatorWithParameters{
 				e.printStackTrace();
 			}
 		}
-		if(sum>0.0){
-			res.setC(sum);
-			res.setN(1-res.getC());
-		}
+		res.setC(sum);
+		res.setN(1 - res.getC());
+		res.setW(sum);
+		res.setU(-1);
+		res.setL(sum);
 		successful=true;
 	}
 	
