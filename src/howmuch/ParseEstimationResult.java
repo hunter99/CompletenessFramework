@@ -72,11 +72,10 @@ public class ParseEstimationResult {
 		 * <Pre>
 		 *		col0:units
 		 *			col1:traceclasses
-		 *				col2:CV
-		 *					col3:estimator1
-		 *					    col4:estimator2
+		 *				col2:estimator1
+		 *					col3:estimator2
 		 *						....
-		 * 		0	1	2	3	4
+		 * 		0	1	2	3
 		 * 0(1st trace)	average=(sum/count)
 		 * 1(2nd trace)
 		 * 2(3rd trace)	
@@ -182,7 +181,7 @@ public class ParseEstimationResult {
 			counts[i][j]++;
 			if(i>maxValidRow)
 				maxValidRow=i;
-			if(j>3 &&counts[i][j]>maxCount){
+			if(j>=SPECIALCOLS &&counts[i][j]>maxCount){
 				maxCount=counts[i][j];
 				maxCountI=i;
 				maxCountJ=j;
@@ -221,6 +220,10 @@ public class ParseEstimationResult {
 	 */
 	final int CLS = 0, CVG = 1, LEN = 2;
 	/**
+	 * the first special columns in the estimation value matrix do not contain estimation values.
+	 */
+	final int SPECIALCOLS=2;
+	/**
 	 * the union of estimators for all different targets.
 	 * <P> Its value orginates from the estimation task.
 	 */
@@ -256,15 +259,15 @@ public class ParseEstimationResult {
 		ArrayList<Estimator>es=ge.getEstimators();
 		estimators=new String[es.size()];
 		for(int i=0;i<es.size();i++){
-			ei.put(es.get(i).name(), i+3);
+			ei.put(es.get(i).name(), i+SPECIALCOLS);
 			estimators[i]=es.get(i).name();
 		}
 		//initialize the estimation targets.
 		int totallines=config.getInt("logLength");
 		targets=new HashMap<Integer,EstimationTarget>();
-		targets.put(CLS,new EstimationTarget(CLS,"Classes", "cls-",totallines,es.size()+3,ec.clsEstimators));
-		targets.put(CVG,new EstimationTarget(CVG,"Coverage","cvg-",totallines,es.size()+3,ec.cvgEstimators));
-		targets.put(LEN,new EstimationTarget(LEN,"Length",  "len-",totallines,es.size()+3,ec.lenEstimators));
+		targets.put(CLS,new EstimationTarget(CLS,"Classes", "cls-",totallines,es.size()+SPECIALCOLS,ec.clsEstimators));
+		targets.put(CVG,new EstimationTarget(CVG,"Coverage","cvg-",totallines,es.size()+SPECIALCOLS,ec.cvgEstimators));
+		targets.put(LEN,new EstimationTarget(LEN,"Length",  "len-",totallines,es.size()+SPECIALCOLS,ec.lenEstimators));
 		
 	}
 	private void outputValue(StringBuffer line,String title,int row,double[][]vals,int realunits,int realtraceclasses){
@@ -284,14 +287,10 @@ public class ParseEstimationResult {
 			line.append(vals[row][0]/realunits);
 		}else if("Actual Trace OTC".equals(title)){
 			line.append(vals[row][1]/realtraceclasses);
-		}else if("Actual CV".equals(title)){
-			line.append(vals[row][2]);
-		}else if("Actual Trace Coverage".equals(title)){
-			line.append(-1);
-		}else if("Observed coverage".equals(title)){
-			line.append(1);
-		}else if("Observed trace coverage".equals(title)){
-			line.append(1);
+//		}else if("Observed coverage".equals(title)){
+//			line.append(1);
+//		}else if("Observed trace coverage".equals(title)){
+//			line.append(1);
 		}else if(title.startsWith("MSE")){
 			line.append(-1);
 		}else {
@@ -415,8 +414,8 @@ public class ParseEstimationResult {
 				if (line.length() < 1)
 					continue;
 				log.debug(line);
-				//log-18.mxml,L1,units=0,estmtr=ACE,coverageNaN,observedtraceclasses=1,CV=-1.0
-				// 0           1   2      3          4            5                      6
+				//log-18.mxml,L1,units=0,estmtr=ACE,coverageNaN,observedtraceclasses=1
+				// 0           1   2      3          4            5                   
 				String[] parts = line.split(",");
 				if (parts.length < 5) {
 					log.warn("error line:" + line);
@@ -433,8 +432,7 @@ public class ParseEstimationResult {
 				int otcs = Integer.parseInt(parts[5]
 						.substring("observedtraceclasses=".length()));
 				// real probability coverage
-				double cvs = Double.parseDouble(parts[6].substring("CV="
-						.length()));
+				//double cvs = Double.parseDouble(parts[6].substring("CV=".length()));
 
 				// name of the estimator.
 				String est = parts[3].substring("estmtr=".length());
@@ -470,7 +468,6 @@ public class ParseEstimationResult {
 					continue;
 				targets.get(isclasses).increase(i, 0, units);
 				targets.get(isclasses).increase(i, 1, otcs);
-				targets.get(isclasses).increase(i, 2, cvs);
 				targets.get(isclasses).increase(i, j, v);
 				
 			}

@@ -313,7 +313,7 @@ public abstract class StatResImpl {
 //			System.out.println(res.getFileName()+",L"+res.getLogLength()+",units="+res.getNumOfObservedUnits()+",estmtr="+e.name()+",classes"+res.getW() +",observedtraceclasses="+res.getNumOfObservedTraceClasses()+",CV="+res.getCV());
 //			System.out.println(res.getFileName()+",L"+res.getLogLength()+",units="+res.getNumOfObservedUnits()+",estmtr="+e.name()+",length"+res.getL()  +",observedtraceclasses="+res.getNumOfObservedTraceClasses()+",CV="+res.getCV());
 			sb.append(res.getFileName()).append(",L").append(res.getLogLength()).append(",units=").append(res.getNumOfObservedUnits()).append(",estmtr=").append(e.name());
-			sb2.append(",observedtraceclasses=").append(res.getNumOfObservedTraceClasses()).append(",CV=").append(res.getCV()).append("\n");
+			sb2.append(",observedtraceclasses=").append(res.getNumOfObservedTraceClasses()).append("\n");
 			sb1.append(sb).append(",coverage").append(res.getC()).append(sb2);
 			sb1.append(sb).append(",classes" ).append(res.getW()).append(sb2);
 			sb1.append(sb).append(",length"  ).append(res.getL()).append(sb2);
