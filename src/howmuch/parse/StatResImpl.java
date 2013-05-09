@@ -3,6 +3,7 @@ package howmuch.parse;
 import howmuch.PopEstimation;
 import howmuch.estimator.Estimator;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -95,6 +96,12 @@ public abstract class StatResImpl {
 		this.config=config;
 		if(config!=null){
 			fileName = config.getString("currentLog");
+			int lastindex=fileName.lastIndexOf(File.separator);
+			if(lastindex>-1){
+				shortName=fileName.substring(lastindex+1);
+			}else{
+				shortName=fileName;
+			}
 			config.alignDist((StatRes)this);
 		}
 		traces = new Hashtable<String, ArrayList<String>>();
@@ -126,8 +133,9 @@ public abstract class StatResImpl {
 		log.info(esinstances.size()+" estimators in the statres");
 	}
 	/**
-	 * Encode a trace with a tag.
-	 * <P> Different traces may have the same tag.
+	 * Encode a trace with a tag, and here it does nothing but return the trace.
+	 * <P> Different traces may have the same tag. The encoding method is determined by the definition of information unit.
+	 * <P>
 	 * @param tasks trace
 	 * @return tag of the trace
 	 */
@@ -156,9 +164,9 @@ public abstract class StatResImpl {
 	 * Get the real probability coverage of the log.
 	 * @return real probability coverage
 	 */
-	public double getCV(){
-		return -1;
-	}
+//	public double getCV(){
+//		return -1;
+//	}
 	/**
 	 * Preparation for a new estimation.
 	 */
@@ -289,7 +297,8 @@ public abstract class StatResImpl {
 	//three buffers for outputting results efficiently 
 	StringBuffer sb=new StringBuffer(1024);
 	StringBuffer sb1=new StringBuffer(3096);
-	StringBuffer sb2=new StringBuffer(1024);
+	StringBuffer sb2=new StringBuffer(1024).append("\n");
+	String shortName=null;
 	/**
 	 * Perform estimation on a given log.
 	 * @param res result
@@ -308,12 +317,10 @@ public abstract class StatResImpl {
 			long outputstart=System.nanoTime();
 			sb.setLength(0);
 			sb1.setLength(0);
-			sb2.setLength(0);
 //			System.out.println(res.getFileName()+",L"+res.getLogLength()+",units="+res.getNumOfObservedUnits()+",estmtr="+e.name()+",coverage"+res.getC()+",observedtraceclasses="+res.getNumOfObservedTraceClasses()+",CV="+res.getCV());
 //			System.out.println(res.getFileName()+",L"+res.getLogLength()+",units="+res.getNumOfObservedUnits()+",estmtr="+e.name()+",classes"+res.getW() +",observedtraceclasses="+res.getNumOfObservedTraceClasses()+",CV="+res.getCV());
 //			System.out.println(res.getFileName()+",L"+res.getLogLength()+",units="+res.getNumOfObservedUnits()+",estmtr="+e.name()+",length"+res.getL()  +",observedtraceclasses="+res.getNumOfObservedTraceClasses()+",CV="+res.getCV());
-			sb.append(res.getFileName()).append(",L").append(res.getLogLength()).append(",units=").append(res.getNumOfObservedUnits()).append(",estmtr=").append(e.name());
-			sb2.append(",observedtraceclasses=").append(res.getNumOfObservedTraceClasses()).append("\n");
+			sb.append(this.shortName).append(",L").append(res.getLogLength()).append(",estmtr=").append(e.name());
 			sb1.append(sb).append(",coverage").append(res.getC()).append(sb2);
 			sb1.append(sb).append(",classes" ).append(res.getW()).append(sb2);
 			sb1.append(sb).append(",length"  ).append(res.getL()).append(sb2);

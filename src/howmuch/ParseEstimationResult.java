@@ -222,7 +222,7 @@ public class ParseEstimationResult {
 	/**
 	 * the first special columns in the estimation value matrix do not contain estimation values.
 	 */
-	final int SPECIALCOLS=2;
+	final int SPECIALCOLS=0;
 	/**
 	 * the union of estimators for all different targets.
 	 * <P> Its value orginates from the estimation task.
@@ -275,10 +275,10 @@ public class ParseEstimationResult {
 			line.append("\"Aggregated "+realNumOfLogs+" logs\"");
 		}else if(" number of traces considered".equals(title)){
 			line.append(row+1);
-		}else if("Observed number of classes".equals(title)){
-			line.append(vals[row][0]);
-		}else if("Observed number of trace classes".equals(title)){
-			line.append(vals[row][1]);
+//		}else if("Observed number of classes".equals(title)){
+//			line.append(vals[row][0]);
+//		}else if("Observed number of trace classes".equals(title)){
+//			line.append(vals[row][1]);
 		}else if("Actual number of classes".equals(title)){
 				line.append(realunits);
 		}else if("Actual number of trace classes".equals(title)){
@@ -414,10 +414,10 @@ public class ParseEstimationResult {
 				if (line.length() < 1)
 					continue;
 				log.debug(line);
-				//log-18.mxml,L1,units=0,estmtr=ACE,coverageNaN,observedtraceclasses=1
-				// 0           1   2      3          4            5                   
+				//log-18.mxml,L1,estmtr=ACE,coverageNaN,
+				// 0           1       2          3                             
 				String[] parts = line.split(",");
-				if (parts.length < 5) {
+				if (parts.length < 4) {
 					log.warn("error line:" + line);
 					continue;
 				}
@@ -426,16 +426,16 @@ public class ParseEstimationResult {
 				if (i > parsedlines)
 					parsedlines = i;
 				// number of observed unit classes
-				int units = Integer.parseInt(parts[2].substring("units="
-						.length()));
+//				int units = Integer.parseInt(parts[2].substring("units="
+//						.length()));
 				// number of observed trace classes
-				int otcs = Integer.parseInt(parts[5]
-						.substring("observedtraceclasses=".length()));
+//				int otcs = Integer.parseInt(parts[5]
+//						.substring("observedtraceclasses=".length()));
 				// real probability coverage
 				//double cvs = Double.parseDouble(parts[6].substring("CV=".length()));
 
 				// name of the estimator.
-				String est = parts[3].substring("estmtr=".length());
+				String est = parts[2].substring("estmtr=".length());
 				if (est.equals("BK"))
 					est = "BRK";
 				if (!ei.containsKey(est)) {
@@ -448,14 +448,14 @@ public class ParseEstimationResult {
 
 				int isclasses = -1;
 				String vs = null;
-				if (parts[4].startsWith("coverage")) {
-					vs = parts[4].substring("coverage".length());
+				if (parts[3].startsWith("coverage")) {
+					vs = parts[3].substring("coverage".length());
 					isclasses = CVG;
-				} else if (parts[4].startsWith("classes")) {
-					vs = parts[4].substring("classes".length());
+				} else if (parts[3].startsWith("classes")) {
+					vs = parts[3].substring("classes".length());
 					isclasses = CLS;
-				} else if (parts[4].startsWith("length")) {
-					vs = parts[4].substring("length".length());
+				} else if (parts[3].startsWith("length")) {
+					vs = parts[3].substring("length".length());
 					isclasses = LEN;
 				} else {
 					log.warn("Skip the Unkown estimation result:" + parts[4]);
@@ -466,8 +466,8 @@ public class ParseEstimationResult {
 				double v = Double.parseDouble(vs);
 				if (v < 0)
 					continue;
-				targets.get(isclasses).increase(i, 0, units);
-				targets.get(isclasses).increase(i, 1, otcs);
+//				targets.get(isclasses).increase(i, 0, units);
+//				targets.get(isclasses).increase(i, 1, otcs);
 				targets.get(isclasses).increase(i, j, v);
 				
 			}

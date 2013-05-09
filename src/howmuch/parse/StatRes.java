@@ -167,7 +167,7 @@ public interface StatRes{
 	 * 
 	 * @return
 	 */
-	public double getCV();
+//	public double getCV();
 	/**
 	 * Encode a trace to get a tag.
 	 * <P> Note different trace classes may have the same tag.

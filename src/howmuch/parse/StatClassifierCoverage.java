@@ -78,7 +78,7 @@ public abstract class StatClassifierCoverage  extends StatTrace implements StatR
 	 * The observed units and their occurrence times.
 	 */
 	Map<String,Integer> otcs; 
-	@Override
+	
 	public double getCV(){
 		if(covers.size()<1)
 			return -1;
