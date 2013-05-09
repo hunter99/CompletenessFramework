@@ -5,7 +5,7 @@ import howmuch.parse.EstimatorConfigure;
 import howmuch.parse.StatRes;
 
 /**
- * The number of observed trace classes so far in the log.
+ * The number of observed unit classes so far in the log.
  * <P>Actually this is not an estimator, but a calculator.
  * @author hedong
  *
