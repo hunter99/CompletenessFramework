@@ -12,14 +12,14 @@ import howmuch.probability.TraceDistribution;
  *
  */
 @AnEstimator
-public class RealCompleteness extends BaseEstimatorWithParameters{
+public class ZActualTraceCoverage extends BaseEstimatorWithParameters{
 	//The occurrence probability distribution of trace classes.
 	private  TraceDistribution realDist;
 	/**
 	 * Constructor.
 	 * @param config configuration
 	 */
-	public RealCompleteness(EstimatorConfigure config) throws Exception{
+	public ZActualTraceCoverage(EstimatorConfigure config) throws Exception{
 		super(config,"Actual Trace Coverage");
 		
 		this.realDist=new TraceDistribution(config.getString("tracedistribution"));
