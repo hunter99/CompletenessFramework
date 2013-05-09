@@ -16,7 +16,11 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
+/**
+ * The configuration of the estimation task.
+ * @author hedong
+ *
+ */
 public class EstimatorConfigure {
 	static Log log=LogFactory.getLog(EstimatorConfigure.class);
 	public String[] lenEstimators = new String[] { "Log",
@@ -69,9 +73,21 @@ public class EstimatorConfigure {
 			"MSE CPL5.01", "CPL5.unit", "MSE CPL5.unit", "CPL5.avg",
 			"MSE CPL5.avg", "CPL5.min", "MSE CPL5.min", "CPL5.max",
 			"MSE CPL5.max", "MLE", "MSE MLE", "TG", "MSE TG" };
+	/**
+	 * configuration file
+	 */
 	String cfg;
+	/**
+	 * All estimators required by the estimation task. The names of these tasks can be obtained in the configuration file.
+	 */
 	Set<String> estimatorSet;
+	/**
+	 * The parser of the configuration file. Only xml format is supported.
+	 */
 	XMLConfiguration config =null;
+	/**
+	 * The estimation task.
+	 */
 	PopEstimation estimation;
 	public EstimatorConfigure() {
 		
@@ -162,8 +178,17 @@ public class EstimatorConfigure {
 		cvgEstimators=list2array(ves);
 		//log.info("length:" + lenEstimators.length + "\nclass:" + clsEstimators.length	+ "\ncoverage:" + cvgEstimators.length);
 	}
-	Map<String,Double> dist;//生成的分布(trace, probability)
+	/**
+	 * The occurrence distribution of trace classes.
+	 */
+	Map<String,Double> dist;
+	/**
+	 * Symbol indicating whether the trace distribution as been normalized. 
+	 */
 	boolean aligneddist=false;
+	/**
+	 * Some special trace distributions, which can be generated dynamically.
+	 */
 	double[]BP,HOTELS,TI,CI;
 	/**
 	 * 设置各类分布下的概率
@@ -214,9 +239,21 @@ c 0.05, C 0.95
 		setProbs(logtype);
 		return genDistribution(BP,HOTELS,TI,CI);
 	}
+	/**
+	 * Get the occurrence distribution of trace classes.
+	 * @return distribution
+	 */
 	public Map<String,Double> getTraceDistribution(){
 		return this.dist;
 	}
+	/**
+	 * Gen occurrence distribution of trace classes of the process model of travel agency.
+	 * @param BP	probability distribution of choosing bus or plane
+	 * @param HOTELS	probability distribution of choosing hotel
+	 * @param TI	probability distribution of choosing trip insurance or not
+	 * @param CI	probability distribution of choosing trip cacellation insurance or not
+	 * @return
+	 */
 	public Map<String,Double> genDistribution(double[]BP,double[] HOTELS,double[]TI,double[]CI){
 		dist=new HashMap<String,Double>();
 //		String [] regs=new String[]{"Register"}; 
@@ -304,8 +341,8 @@ c 0.05, C 0.95
 		return dist;
 	}
 	/**
-	 * 对轨迹进行编码,然后据编码分组汇总出现概率。
-	 * @param res
+	 * normalize the trace distribution based on the encoded traces.
+	 * @param res 
 	 */
 	public void alignDist(StatRes res){
 		if(aligneddist)
@@ -330,6 +367,11 @@ c 0.05, C 0.95
 			aligneddist=true;
 		}
 	}
+	/**
+	 * Load trace distribution from file.
+	 * @param distxml	the file of occurrence distribution of traces 
+	 * @return	distribution
+	 */
 	public Map<String,Double> genDistribution(String distxml){
 		dist=new HashMap<String,Double>();
 		try{
@@ -351,6 +393,9 @@ c 0.05, C 0.95
 		log.info("distribution loaded."+distxml);
 		return dist;
 	}
+	/**
+	 * command line syntax string for the usage output.
+	 */
 	static String cmdline="";
 	public static void setCmdLineSyntax(String cmd){
 		cmdline=cmd;
