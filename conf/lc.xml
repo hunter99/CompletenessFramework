@@ -17,7 +17,7 @@
   <statres>howmuch.parse.StatTrace</statres>
   <confidence>0.9</confidence>
   <epsilon>0.1</epsilon>
-  <tracedistribution>./conf/uniform.xml</tracedistribution>
+  <tracedistribution>./conf/TraceDistB.xml</tracedistribution>
 </config>
 
 
