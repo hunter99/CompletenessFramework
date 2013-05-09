@@ -101,32 +101,32 @@ public interface StatRes{
 	 * number of all possible unit classes.
 	 * @return
 	 */
-	public long getW();
+	public double getW();
 	/**
 	 * set the estimated number of all possible unit classes.
 	 * @param w
 	 */
-	public void setW(long w);
+	public void setW(double w);
 	/**
 	 * the number of the unobserved unit classes.
 	 * @return
 	 */
-	public long getU();
+	public double getU();
 	/**
 	 * set the estimated number of unoberved unti classes.
 	 * @param u
 	 */
-	public void setU(long u);
+	public void setU(double u);
 	/**
 	 * the expected log length given specified parameters( e.g. confidence level, error rate)
 	 * @return
 	 */
-	public long getL();
+	public double getL();
 	/**
 	 * set the estimated expected log length given specified parameters( e.g. confidence level, error rate)
 	 * @param l
 	 */
-	public void setL(long l);
+	public void setL(double l);
 	/**
 	 * the real log length, i.e, the number of traces in the log.
 	 * @return

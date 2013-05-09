@@ -67,11 +67,11 @@ public abstract class StatResImpl {
 	/**
 	 * W is the number of all possible units(e.g., traces, DSes).
 	 */
-	long W = -1;
+	double W = -1;
 	/**
 	 * U is the number of all unobserved units(e.g., traces, DSes).
 	 */
-	long U = -1;
+	double U = -1;
 	/**
 	 * C is the probability coverage of the observed units in the log.
 	 */
@@ -83,7 +83,7 @@ public abstract class StatResImpl {
 	/**
 	 * the expected minimum length of a complete event log.
 	 */
-	long L = -1;
+	double L = -1;
 
 	/**
 	 * Construct method.
@@ -394,14 +394,14 @@ public abstract class StatResImpl {
 	 * Get the estimated number of all units.
 	 * @return total number of units
 	 */
-	public long getW() {
+	public double getW() {
 		return W;
 	}
 	/**
 	 * Set the estimated number of all units.
 	 * @param w estimated total number of units
 	 */
-	public void setW(long w) {
+	public void setW(double w) {
 		W=w;
 		
 	}
@@ -409,28 +409,28 @@ public abstract class StatResImpl {
 	 * Get the estimated number of unknown units.
 	 * @return estimated number of unknown units
 	 */
-	public long getU() {
+	public double getU() {
 		return U;
 	}
 	/**
 	 * Set the estimated number of unknown units.
 	 * @param u estimated number of unknown units
 	 */
-	public void setU(long u) {
+	public void setU(double u) {
 		U=u;
 	}
 	/**
 	 * Get the estimated minimum length of a complete log.
 	 * @return log length
 	 */
-	public long getL() {
+	public double getL() {
 		return L;
 	}
 	/**
 	 * Set the estimated minimum length of a complete log 
 	 * @param l log length
 	 */
-	public void setL(long l) {
+	public void setL(double l) {
 		L=l;
 	}
 	/**
