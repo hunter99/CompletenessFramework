@@ -6,28 +6,27 @@ import howmuch.parse.StatRes;
 import howmuch.probability.TraceDistribution;
 
 /**
- * 真实的比例与覆盖.
- * 这个函数，主要是用来跟各种估计器作比较的.
+ * The actual probability coverage of observed trace classes.
+ * <P>Actually this is not an estimator, but a calculator.
  * @author hedong
  *
  */
 @AnEstimator
 public class RealCompleteness extends BaseEstimatorWithParameters{
-	//真实分布，其元素的个数同时即为真实的种类数.
+	//The occurrence probability distribution of trace classes.
 	private  TraceDistribution realDist;
 	/**
-	 * 构造函数.
-	 * @param dist	真实分布
+	 * Constructor.
+	 * @param config configuration
 	 */
 	public RealCompleteness(EstimatorConfigure config) throws Exception{
-		super(config,"Real");
+		super(config,"Actual Trace Coverage");
 		
 		this.realDist=new TraceDistribution(config.getString("tracedistribution"));
 		this.realDist.load();
 	}
 	public void estimate(StatRes res){
 		successful=false;
-//		int n=res.getLogLength();
 		int w=res.getNumOfObservedUnits();
 		res.setW(this.realDist.getDistSize());
 		res.setU(res.getW()-w);
