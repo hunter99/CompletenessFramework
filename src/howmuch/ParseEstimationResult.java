@@ -270,27 +270,19 @@ public class ParseEstimationResult {
 		targets.put(LEN,new EstimationTarget(LEN,"Length",  "len-",totallines,es.size()+SPECIALCOLS,ec.lenEstimators));
 		
 	}
-	private void outputValue(StringBuffer line,String title,int row,double[][]vals,int realunits,int realtraceclasses){
+	private void outputValue(StringBuffer line,String title,int row,double[][]vals){
 		if("Log".equals(title)){
 			line.append("\"Aggregated "+realNumOfLogs+" logs\"");
 		}else if(" number of traces considered".equals(title)){
 			line.append(row+1);
-//		}else if("Observed number of classes".equals(title)){
-//			line.append(vals[row][0]);
-//		}else if("Observed number of trace classes".equals(title)){
-//			line.append(vals[row][1]);
-		}else if("Actual number of classes".equals(title)){
-				line.append(realunits);
-		}else if("Actual number of trace classes".equals(title)){
-			line.append(realtraceclasses);
-		}else if("Actual OUR".equals(title)){
-			line.append(vals[row][0]/realunits);
-		}else if("Actual Trace OTC".equals(title)){
-			line.append(vals[row][1]/realtraceclasses);
-//		}else if("Observed coverage".equals(title)){
-//			line.append(1);
-//		}else if("Observed trace coverage".equals(title)){
-//			line.append(1);
+//		}else if("Actual number of classes".equals(title)){
+//				line.append(realunits);
+//		}else if("Actual number of trace classes".equals(title)){
+//			line.append(realtraceclasses);
+//		}else if("Actual OUR".equals(title)){
+//			line.append(vals[row][0]/realunits);
+//		}else if("Actual OTR".equals(title)){
+//			line.append(vals[row][1]/realtraceclasses);
 		}else if(title.startsWith("MSE")){
 			line.append(-1);
 		}else {
@@ -318,15 +310,15 @@ public class ParseEstimationResult {
 		BufferedWriter writer=new BufferedWriter(new OutputStreamWriter(out));
 		String[] comontitle=new String[]{
 				"Log",
-				" number of traces considered",
+				" number of traces considered" //,
 //				"Actual Coverage",
-				"Observed number of classes",
-				"Actual number of classes",
+//				"Observed number of classes",
+//				"Actual number of classes",
 //				"Observed coverage",
-				"Observed number of trace classes",
-				"Actual number of trace classes",
-				"Actual CV",
-				"Actual Trace Coverage"		
+//				"Observed number of trace classes",
+//				"Actual number of trace classes",
+//				"Actual CV",
+//				"Actual Trace Coverage"		
 		};
 		//output the title line of hte csv file.
 		outputTitle(line,comontitle);
@@ -345,14 +337,14 @@ public class ParseEstimationResult {
 			//output the common content each line
 			for(int j=0;j<comontitle.length;j++){
 				if(line.length()>0)line.append(",");
-				outputValue(line,comontitle[j],i,data.get(0),realunits, realtraceclasses);
+				outputValue(line,comontitle[j],i,data.get(0));
 			}				
 			//output the estimated values by different estimators.
 			for(int d=0;d<data.size();d++){
 				double[][]vals=data.get(d);
 				for(int j=0;j<estimators.length;j++){
 					if(line.length()>0)line.append(",");
-					outputValue(line,estimators[j],i,vals,realunits, realtraceclasses);
+					outputValue(line,estimators[j],i,vals);
 				}				
 			}
 			writer.write(line.toString());
@@ -392,7 +384,7 @@ public class ParseEstimationResult {
 			line.setLength(0);
 			for(int j=0;j<title.length;j++){
 				if(line.length()>0)line.append(",");
-				outputValue(line,title[j],i,vals,realunits, realtraceclasses);
+				outputValue(line,title[j],i,vals);
 			}
 			writer.write(line.toString());
 			writer.newLine();
@@ -425,14 +417,6 @@ public class ParseEstimationResult {
 				int i = Integer.parseInt(parts[1].substring(1)) - 1;
 				if (i > parsedlines)
 					parsedlines = i;
-				// number of observed unit classes
-//				int units = Integer.parseInt(parts[2].substring("units="
-//						.length()));
-				// number of observed trace classes
-//				int otcs = Integer.parseInt(parts[5]
-//						.substring("observedtraceclasses=".length()));
-				// real probability coverage
-				//double cvs = Double.parseDouble(parts[6].substring("CV=".length()));
 
 				// name of the estimator.
 				String est = parts[2].substring("estmtr=".length());
