@@ -1,0 +1,82 @@
+<traces>
+<trace id="1" 	seq="Register,Hotel,Hotel,Bus,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="2" 	seq="Register,Bus,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="3" 	seq="Register,Hotel,Hotel,Plane,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="4" 	seq="Register,Hotel,Bus,Hotel,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="5" 	seq="Register,Plane,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="6" 	seq="Register,Hotel,Bus,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="7" 	seq="Register,Hotel,Hotel,Plane,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="8" 	seq="Register,Hotel,Hotel,Plane,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="9" 	seq="Register,Bus,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="10" 	seq="Register,Bus,Hotel,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="11" 	seq="Register,Bus,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="12" 	seq="Register,Hotel,Hotel,Bus,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="13" 	seq="Register,Hotel,Plane,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="14" 	seq="Register,Hotel,Plane,Trip Cost,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="15" 	seq="Register,Hotel,Hotel,Bus,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="16" 	seq="Register,Hotel,Plane,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="17" 	seq="Register,Hotel,Hotel,Plane,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="18" 	seq="Register,Plane,Hotel,Hotel,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="19" 	seq="Register,Hotel,Plane,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0156250000"/>
+<trace id="20" 	seq="Register,Hotel,Plane,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="21" 	seq="Register,Hotel,Bus,Hotel,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="22" 	seq="Register,Bus,Hotel,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="23" 	seq="Register,Bus,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0156250000"/>
+<trace id="24" 	seq="Register,Hotel,Bus,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0156250000"/>
+<trace id="25" 	seq="Register,Hotel,Plane,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="26" 	seq="Register,Plane,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0156250000"/>
+<trace id="27" 	seq="Register,Bus,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="28" 	seq="Register,Hotel,Hotel,Plane,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="29" 	seq="Register,Hotel,Bus,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="30" 	seq="Register,Hotel,Bus,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="31" 	seq="Register,Hotel,Bus,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="32" 	seq="Register,Hotel,Hotel,Bus,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="33" 	seq="Register,Hotel,Hotel,Bus,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="34" 	seq="Register,Hotel,Hotel,Plane,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="35" 	seq="Register,Hotel,Bus,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="36" 	seq="Register,Hotel,Bus,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="37" 	seq="Register,Bus,Hotel,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="38" 	seq="Register,Hotel,Plane,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="39" 	seq="Register,Hotel,Plane,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="40" 	seq="Register,Hotel,Hotel,Bus,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="41" 	seq="Register,Bus,Hotel,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="42" 	seq="Register,Plane,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0156250000"/>
+<trace id="43" 	seq="Register,Plane,Hotel,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="44" 	seq="Register,Hotel,Hotel,Bus,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="45" 	seq="Register,Plane,Hotel,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="46" 	seq="Register,Hotel,Hotel,Plane,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="47" 	seq="Register,Hotel,Bus,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="48" 	seq="Register,Plane,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="49" 	seq="Register,Bus,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0156250000"/>
+<trace id="50" 	seq="Register,Hotel,Hotel,Bus,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="51" 	seq="Register,Plane,Hotel,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="52" 	seq="Register,Hotel,Hotel,Plane,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="53" 	seq="Register,Hotel,Bus,Hotel,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="54" 	seq="Register,Plane,Hotel,Hotel,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="55" 	seq="Register,Bus,Hotel,Hotel,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="56" 	seq="Register,Hotel,Bus,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="57" 	seq="Register,Bus,Hotel,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="58" 	seq="Register,Plane,Hotel,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="59" 	seq="Register,Hotel,Plane,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0156250000"/>
+<trace id="60" 	seq="Register,Hotel,Bus,Trip Cost,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="61" 	seq="Register,Hotel,Plane,Hotel,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="62" 	seq="Register,Plane,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="63" 	seq="Register,Hotel,Bus,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0156250000"/>
+<trace id="64" 	seq="Register,Bus,Hotel,Hotel,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="65" 	seq="Register,Hotel,Hotel,Bus,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="66" 	seq="Register,Hotel,Plane,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="67" 	seq="Register,Bus,Hotel,Hotel,Hotel,Trip Cost,Trip Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="68" 	seq="Register,Hotel,Hotel,Bus,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="69" 	seq="Register,Hotel,Hotel,Plane,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="70" 	seq="Register,Hotel,Plane,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="71" 	seq="Register,Plane,Hotel,Hotel,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="72" 	seq="Register,Plane,Hotel,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="73" 	seq="Register,Hotel,Plane,Hotel,Hotel,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="74" 	seq="Register,Hotel,Hotel,Plane,Trip Cost,Trip Insurance,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="75" 	seq="Register,Plane,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="76" 	seq="Register,Plane,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0312500000"/>
+<trace id="77" 	seq="Register,Hotel,Plane,Hotel,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="78" 	seq="Register,Bus,Hotel,Hotel,Trip Cost,Trip Cancellation Insurance,Trip Insurance,Insurance Cost,Payment"	prob="0.0052083333"/>
+<trace id="79" 	seq="Register,Hotel,Plane,Hotel,Trip Cost,Trip Cancellation Insurance,Insurance Cost,Payment"	prob="0.0104166667"/>
+<trace id="80" 	seq="Register,Hotel,Bus,Hotel,Trip Cost,Insurance Cost,Payment"	prob="0.0104166667"/>
+</traces>
