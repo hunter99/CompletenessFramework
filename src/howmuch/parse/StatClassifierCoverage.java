@@ -1,6 +1,7 @@
 package howmuch.parse;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -13,9 +14,6 @@ import org.apache.commons.logging.LogFactory;
  */
 public abstract class StatClassifierCoverage  extends StatTrace implements StatRes {
 	static Log log=LogFactory.getLog(StatClassifierCoverage.class);
-	/**
-	 * allitems与order，用于对一个集合进行编码，分别对应编码与去重两个任务。
-	 */
 	/**
 	 * The set of items and their corresponding code.
 	 */
@@ -94,8 +92,20 @@ public abstract class StatClassifierCoverage  extends StatTrace implements StatR
 	public StatClassifierCoverage(EstimatorConfigure config) {
 		super(config);
 		this.probs=config.getTraceDistribution();
-		setCovers((ArrayList<Double> )config.getObject("covers"));
-		setObservedTraceClasses((Map<String,Integer>)config.getObject("otcs"));
+		ArrayList<Double>cvrs;
+		if(config.containsKey("covers")){
+			cvrs=(ArrayList<Double> )config.getObject("covers");
+		}else{
+			cvrs=new ArrayList<Double>();
+		}
+		setCovers(cvrs);
+		Map<String,Integer>otcs;
+		if(config.containsKey("otcs")){
+			otcs=(Map<String,Integer>)config.getObject("otcs");
+		}else{
+			otcs=new HashMap<String,Integer>();
+		}
+		setObservedTraceClasses(otcs);
 	}
 	/**
 	 * Set the list used to store the coverage values for steps.
