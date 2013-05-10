@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "注意修改配置文件conf/?.xml"
 jopts="-Xms1024m -Xmx1024m"
-jcps="-cp dist/*:lib/*:lib/plugins/estimators/*"
+jcps="-cp dist/*:lib/*:lib/plugins/units/*:lib/plugins/estimators/*"
 ds=19
 trace=64
 echo $ds,$trace
