@@ -15,6 +15,7 @@
   </coverage>
   <!--statres>howmuch.parse.StatDSTrace</statres-->
   <statres>howmuch.parse.StatTrace</statres>
+  <!--statres>howmuch.parse.StatTaskSet</statres-->
   <confidence>0.9</confidence>
   <epsilon>0.1</epsilon>
   <tracedistribution>./conf/TraceDistB.xml</tracedistribution>
