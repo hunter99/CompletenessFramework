@@ -200,11 +200,11 @@ public class LogCompleteness extends PopEstimation {
 		return null;
 	}
 	/**
-	 * Main program of estimating the information completeness of an event log for process mining.
-	 * 
-	 * @param args	arguments.
+	 * Evaluate the completeness of logs with specified arguments.
+	 * <P>
+	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void evaluateWithArgs(String[]args){
 		try{
 			//get the parameters and the configuration for the program.
 			EstimatorConfigure ec=getConfig(args);
@@ -227,6 +227,15 @@ public class LogCompleteness extends PopEstimation {
 		}catch(Exception e){
 			log.warn(e.toString());
 		}
+		
+	}
+	/**
+	 * Main program of estimating the information completeness of an event log for process mining.
+	 * 
+	 * @param args	arguments.
+	 */
+	public static void main(String[] args) {
+		evaluateWithArgs(args);
 	}
 
 }
