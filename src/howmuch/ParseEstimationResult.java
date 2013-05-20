@@ -494,10 +494,11 @@ public class ParseEstimationResult {
 
 	}
 	/**
-	 * @param args
+	 * Parse the estimation result file with arguments.
+	 * @param args arguments
 	 */
 	@SuppressWarnings("static-access")
-	public static void main(String[] args) throws Exception{
+	public static void parseWithArgs(String []args){
 		EstimatorConfigure.setCmdLineSyntax("java howmuch.ParseEstimationResult");
 		log.info("generating option descrition");
 		Options options = new Options();
@@ -578,5 +579,12 @@ public class ParseEstimationResult {
 		}catch(Exception e){
 			System.err.println(e.toString());
 		}
+
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) throws Exception{
+		parseWithArgs(args);
 	}
 }
