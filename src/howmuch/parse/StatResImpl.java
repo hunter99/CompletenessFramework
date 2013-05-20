@@ -4,6 +4,7 @@ import howmuch.PopEstimation;
 import howmuch.estimator.Estimator;
 
 import java.io.File;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -85,7 +86,10 @@ public abstract class StatResImpl {
 	 * the expected minimum length of a complete event log.
 	 */
 	double L = -1;
-
+	/**
+	 * A stream used to output the estimation results.
+	 */
+	PrintStream out=System.out;
 	/**
 	 * Construct method.
 	 * 
@@ -103,6 +107,9 @@ public abstract class StatResImpl {
 				shortName=fileName;
 			}
 			config.alignDist((StatRes)this);
+			if(config.containsKey("resultStream")){
+				out=(PrintStream)config.getObject("resultStream");
+			}
 		}
 		traces = new Hashtable<String, ArrayList<String>>();
 		freqfreqs = new Hashtable<Integer, Integer>();
@@ -254,39 +261,59 @@ public abstract class StatResImpl {
 		traces.put(trace, ids);
 		tasks.setLength(0);
 	}
-
+	/**
+	 * Output a string with a line feed.
+	 * @param str a string
+	 */
+	private void println(String str){
+		print(str);
+		println();
+	}
+	/**
+	 * Output a line feed.
+	 */
+	private void println(){
+		print("\n");
+	}
+	/**
+	 * Output a string without a line feed.
+	 * @param str a string
+	 */
+	private void print(String str){
+		out.print(str);
+	}
 	/**
 	 * output the statistical information of the log.
 	 */
 	public void displayStat() {
-		System.out.print("file: " + fileName);
+		print("file: " + fileName);
 		for (Iterator<String> itr = traces.keySet().iterator(); (0 > 1)
 				&& (itr.hasNext());) {
 			String key = itr.next();
 			ArrayList<String> ids = traces.get(key);
-			System.out.println("" + ids.size() + "\t" + key);
+			println("" + ids.size() + "\t" + key);
 		}
 		int j = 0;
 		int count = 0;
 		for (int i = 1; i < this.loglength; i++) {
 			if (!freqfreqs.containsKey(i))
 				continue;
-			System.out.print(i + ":" + freqfreqs.get(i));
+			print(i + ":" + freqfreqs.get(i));
 			count += i * freqfreqs.get(i);
 			if (count >= this.observedclasses) {
-				System.out.println();
+				println();
 				break;
 			}
 			if (j > 5) {
-				System.out.println();
+				println();
 				j = 0;
 			} else
-				System.out.print("\t");
+				print("\t");
 			j++;
 		}
 
-		System.out.print("\ttotal:" + loglength);
-		System.out.print("\tclasses:" + observedclasses + "\t");
+		print("\ttotal:" + loglength);
+		print("\tclasses:" + observedclasses + "\t");
 	}
 	//count the number of processed traces in the log
 	long count=0;
@@ -324,7 +351,7 @@ public abstract class StatResImpl {
 			sb1.append(sb).append(",coverage").append(res.getC()).append(sb2);
 			sb1.append(sb).append(",classes" ).append(res.getW()).append(sb2);
 			sb1.append(sb).append(",length"  ).append(res.getL()).append(sb2);
-			System.out.println(sb1.toString());
+			println(sb1.toString());
 			long outputstop=System.nanoTime();
 			estimatecosts[i]+=outputstart-estimatestart;
 			outputcost+=outputstop-outputstart;
@@ -349,18 +376,18 @@ public abstract class StatResImpl {
 	 * display the estimation result
 	 */
 	public void displayEstimation() {
-		System.out.println("Log length:" + this.loglength
+		println("Log length:" + this.loglength
 				+ "\tObserved trace classes:" + this.observedclasses);
-		System.out.println("Unobserved classes:" + this.U
+		println("Unobserved classes:" + this.U
 				+ "\tTotal trace classes:" + this.W);
-		System.out.print("New Trace probability:" + this.N
+		print("New Trace probability:" + this.N
 				+ "\tCoverbility of observed:" + this.C + "\t By: ");
 		for (int i = 0; i < esinstances.size(); i++) {
 			if (i > 0)
-				System.out.print(",");
-			System.out.print(esinstances.get(i).name());
+				print(",");
+			print(esinstances.get(i).name());
 		}
-		System.out.println();
+		println();
 	}
 	/**
 	 * get the log file name.
