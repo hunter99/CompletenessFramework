@@ -1,6 +1,9 @@
 package howmuch;
 
 
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.Option;
@@ -96,6 +99,12 @@ public class LogCompleteness extends PopEstimation {
                 .hasArg()
                 .withDescription(  "the configuration file" )
                 .create( "c");
+			//output file
+			Option outputfile = OptionBuilder.withLongOpt("output")
+				.withArgName( "file" )
+                .hasArg()
+                .withDescription(  "the output file" )
+                .create( "o");
 			//occurrence probability distributions of traces of the underline process model.
 			Option tracedistribution=OptionBuilder.withLongOpt("tracedistribution")
 				.withArgName( "file" )
@@ -117,6 +126,7 @@ public class LogCompleteness extends PopEstimation {
 			options.addOption(confidence);
 			options.addOption(epsilon);
 			options.addOption(configfile);
+			options.addOption(outputfile);
 			options.addOption(tracedistribution);
 			options.addOption(unitdistribution);
 			options.addOption(realunits);
@@ -139,6 +149,10 @@ public class LogCompleteness extends PopEstimation {
 				ec.parse(conf);
 			}else{
 				EstimatorConfigure.errCmd(options,"an configuration file is required.");
+			}
+			if(cmd.hasOption("output")){
+				String outputfilename=cmd.getOptionValue("output");
+				ec.set("resultFileName", outputfilename);
 			}
 			if(cmd.hasOption("l")){
 				cf=Double.parseDouble(cmd.getOptionValue("confidence"));
@@ -205,13 +219,16 @@ public class LogCompleteness extends PopEstimation {
 	 * @param args
 	 */
 	public static void evaluateWithArgs(String[]args){
+		EstimatorConfigure ec=null;
 		try{
 			//get the parameters and the configuration for the program.
-			EstimatorConfigure ec=getConfig(args);
+			ec=getConfig(args);
 
 			//set the name of the task.
 			ec.set("task","LogCompleteness");
-	        
+	        if(ec.containsKey("resultFileName")){
+	        	ec.set("outputStream", new PrintStream(new FileOutputStream(ec.getString("resultFileName"))));
+	        }
 			LogCompleteness pe=new LogCompleteness(ec);
 			//automatically registered all estimators (algorithms that estimating the log completenss) available.
 			pe.registerEstimators(ec);
@@ -226,6 +243,13 @@ public class LogCompleteness extends PopEstimation {
 			pe.processLogs(ec);
 		}catch(Exception e){
 			log.warn(e.toString());
+		}finally{
+			if(ec!=null && ec.containsKey("outputStream")){
+				PrintStream output=(PrintStream)ec.getObject("outputStream");
+				output.flush();
+				output.close();
+				
+			}
 		}
 		
 	}
