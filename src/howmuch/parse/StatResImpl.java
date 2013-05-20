@@ -107,8 +107,8 @@ public abstract class StatResImpl {
 				shortName=fileName;
 			}
 			config.alignDist((StatRes)this);
-			if(config.containsKey("resultStream")){
-				out=(PrintStream)config.getObject("resultStream");
+			if(config.containsKey("outputStream")){
+				out=(PrintStream)config.getObject("outputStream");
 			}
 		}
 		traces = new Hashtable<String, ArrayList<String>>();
